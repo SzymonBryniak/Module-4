@@ -22,36 +22,36 @@
 # def draw_move(board):
     # The function draws the computer's move and updates the board.
 
-board = [[[[]]]]
+
 plus = '+'
-dash = '-'
+dash = '-------'
 pipe = '|'
-'''
-+-------+-------+-------+
-|       |       |       |
-|   O   |   X   |   X   |
-|       |       |       |
-+-------+-------+-------+
-|       |       |       |
-|   O   |   X   |   X   |
-|       |       |       |
-+-------+-------+-------+
-|       |       |       |
-|   O   |   O   |   9   |
-|       |       |       |
-+-------+-------+-------+
-'''
 
-board2 = [[dash for char in range(0, 6)] for char1 in range(0, 3)]
+bs = [[[1], [2], [3]], [[1], [2], [3]], [[1], [2], [3]]]
+a = 'p'
+board = f'''
++-------+-------+-------+
+|       |       |       |
+|  {a}    |   {a}   |   {a}   |
+|       |       |       |
++-------+-------+-------+
+|       |       |       |
+|  {a}    |   {a}   |   {a}   |
+|       |       |       |
++-------+-------+-------+
+|       |       |       |
+|  {a}    |   {a}   |   {a}   |
+|       |       |       |
++-------+-------+-------+
+'''
 board1 = ['+', '-------', '+', '-------', '+', '-------', '+']
-
+board2 = [[dash for char in range(0, 1)] for char1 in range(0, 3)]
 
 board1_join = ''.join(board1)
-board2_join = []
-for ele in range(len(board2)):
-    board2_join += ''.join(board2[ele])
 
+
+#board2_join = (''.join(board2[0]))
 
 print(board1_join)
-print(board2)
-print(board2_join)
+print(len(board2))
+print(board)
