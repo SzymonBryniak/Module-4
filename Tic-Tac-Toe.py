@@ -1,8 +1,34 @@
 def display_board(board):
     print(board)
-    return
+    abc_counter = -1
+    a, b, c, d, e, f, g, h, i = 1, 2, 3, 4, 5, 6, 7, 8, 9
+    abc = [a, b, c, d, e, f, g, h, i]
+    for ii in range(0, 3):
+        for kk in range(0, 3):
+            abc_counter += 1
+            abc[abc_counter] = board[ii][kk]
+            print(abc_counter, board[ii][kk])
+
+    abc_counter += 1
+
     # The function accepts one parameter containing the board's current status
     # and prints it out to the console.
+    board1 = f'''
+    +-------+-------+-------+
+    |       |       |       |
+    |   {a}   |   {b}   |   {c}   |
+    |       |       |       |
+    +-------+-------+-------+
+    |       |       |       |
+    |   {d}   |   {e}   |   {f}   |
+    |       |       |       |
+    +-------+-------+-------+
+    |       |       |       |
+    |   {g}   |   {h}   |   {i}   |
+    |       |       |       |
+    +-------+-------+-------+
+    '''
+    return print(board1), print(abc, abc_counter)
 
 
 def enter_move(board):
@@ -11,7 +37,7 @@ def enter_move(board):
     for bb in range(0, 3):
         for cc in range(0, 3):
             if ask_for_input in board[bb][cc]:
-                print('yes')
+                #print('yes')
                 board[bb][cc] = 'O'
 
     # The function accepts the board's current status, asks the user about their move,
@@ -33,25 +59,12 @@ def enter_move(board):
 plus = '+'
 dash = '+-------'
 pipe = '|'
-a, b, c, d, e, f, g, h, i = 1, 2, 3, 4, 5, 6, 7, 8, 9
+
 board_positions = [[[1], [2], [3]],
                    [[4], [5], [6]],
                    [[7], [8], [9]]]
 
-board1 = f'''
-+-------+-------+-------+
-|       |       |       |
-|   {a}   |   {b}   |   {c}   |
-|       |       |       |
-+-------+-------+-------+
-|       |       |       |
-|   {d}   |   {e}   |   {f}   |
-|       |       |       |
-+-------+-------+-------+
-|       |       |       |
-|   {g}   |   {h}   |   {i}   |
-|       |       |       |
-+-------+-------+-------+
+
 '''
 # board1 = ['+', '-------', '+', '-------', '+', '-------', '+']
 # board2 = [dash for char in range(0, 1)]
@@ -59,3 +72,5 @@ board1 = f'''
 
 enter_move(board_positions)
 
+'''
+enter_move(board_positions)
