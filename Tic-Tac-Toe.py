@@ -1,3 +1,12 @@
+import random as rd
+
+free_fields = []
+
+board_positions = [[[1], [2], [3]],
+                   [[4], [5], [6]],
+                   [[7], [8], [9]]]
+
+
 def display_board(board):
     abc_counter = 0
     abc = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9}
@@ -26,10 +35,11 @@ def display_board(board):
 |       |       |       |
 +-------+-------+-------+
     '''
-    return print(board1)
+    print(board1)
+    return
 
 
-def enter_move(board):
+def enter_move(board):                              # start
     ask_for_input = int(input('enter your move '))
 
     for bb in range(0, 3):
@@ -42,34 +52,39 @@ def enter_move(board):
     # The function accepts the board's current status, asks the user about their move,
     # checks the input, and updates the board according to the user's decision.
     #board.append(ask_for_input)
-    return display_board(board)
-# def make_list_of_free_fields(board):
+    make_list_of_free_fields(board) # to stage 2
+    return
+
+
+def make_list_of_free_fields(board):  # stage 2
     # The function browses the board and builds a list of all the free squares;
     # the list consists of tuples, while each tuple is a pair of row and column numbers.
 
+    for bb in range(0, 3):
+        for cc in range(0, 3):
+            if board[bb][cc][0] == 'O':
+                continue
+
+            free_fields.append(tuple((1, board[bb][cc][0])))
+
+    return print(free_fields)
 # def victory_for(board, sign):
     # The function analyzes the board's status in order to check if
     # the player using 'O's or 'X's has won the game
 
-# def draw_move(board):
+
+def draw_move(board): # stage 3
+    computer_input = rd.randint(1, 9)
     # The function draws the computer's move and updates the board.
+    for bb in range(0, 3):
+        for cc in range(0, 3):
+            if ask_for_input in board[bb][cc]:
+                #print('yes')
+                board[bb][cc] = 'O'
+                board.append(ask_for_input)
+    return
 
 
-plus = '+'
-dash = '+-------'
-pipe = '|'
-
-board_positions = [[[1], [2], [3]],
-                   [[4], [5], [6]],
-                   [[7], [8], [9]]]
 
 
-'''
-# board1 = ['+', '-------', '+', '-------', '+', '-------', '+']
-# board2 = [dash for char in range(0, 1)]
-
-
-enter_move(board_positions)
-
-'''
 enter_move(board_positions)
