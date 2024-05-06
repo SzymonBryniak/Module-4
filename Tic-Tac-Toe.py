@@ -65,7 +65,7 @@ def make_list_of_free_fields(board):  # stage 2
             if board[bb][cc][0] == 'O':
                 continue
 
-            free_fields.append(tuple((1, board[bb][cc][0])))
+            free_fields.append(tuple((bb+1, cc+1)))
 
     return print(free_fields)
 # def victory_for(board, sign):
