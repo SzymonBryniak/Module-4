@@ -42,16 +42,15 @@ def display_board(board):
 
 def enter_move(board):                              # start
     ask_for_input = int(input('enter your move '))
-
     for bb in range(0, 3):
         for cc in range(0, 3):
-            if ask_for_input in board[bb][cc]:  #tuples of free spaces to be used instead of the list due to TypeError
+            if board[bb][cc] == 'O' or board[bb][cc] == 'X':
+                continue
+            elif ask_for_input in board[bb][cc]:
                 board[bb][cc] = 'O'
-                board.append(ask_for_input)
-
     # The function accepts the board's current status, asks the user about their move,
     # checks the input, and updates the board according to the user's decision.
-    #board.append(ask_for_input)
+
     make_list_of_free_fields(board)
     return board   # to stage 2
 
@@ -60,6 +59,9 @@ def make_list_of_free_fields(board):  # stage 2
     # The function browses the board and builds a list of all the free squares;
     # the list consists of tuples, while each tuple is a pair of row and column numbers.
 
+    # board_positions = [[[1], [2], [3]],
+    #                    [[4], [5], [6]],
+    #                    [[7], [8], [9]]]
     for bb in range(0, 3):
         for cc in range(0, 3):
             if board[bb][cc][0] == '0':
@@ -68,7 +70,7 @@ def make_list_of_free_fields(board):  # stage 2
             free_fields.append(tuple((bb, cc)))
             free_fields_display.append(tuple((bb+1, cc+1)))
 
-    return print(free_fields)
+    return free_fields
 
 
 def victory_for(board, sign):
@@ -79,12 +81,19 @@ def victory_for(board, sign):
 
 def draw_move(board):  # stage 3
     computer_input = rd.randint(1, 9)
+    print(computer_input)
     # The function draws the computer's move and updates the board.
     for bb in range(0, 3):
         for cc in range(0, 3):
-            if computer_input in board[bb][cc]: # I need to  replace the variable here
-                board[bb][cc] = '0'
-                board.append(ask_for_input)
+            if board[bb][cc] == 'O' or board[bb][cc] == 'X':
+                continue
+            elif computer_input in board[bb][cc]:
+                board[bb][cc] = 'X'
+
+
+
+            # if computer_input in board[bb][cc]: # I need to  replace the variable here
+
 
     make_list_of_free_fields(board)
     return
@@ -92,9 +101,13 @@ def draw_move(board):  # stage 3
 
 game_on = True
 
-#while game_on:
-display_board(board_positions)
-board_positions = enter_move(board_positions)
+while game_on:
+    display_board(board_positions)
+    enter_move(board_positions)
+    display_board(board_positions)
+    draw_move(board_positions)
+    display_board(board_positions)
+
 
 ## if make list > 0 draw
 
