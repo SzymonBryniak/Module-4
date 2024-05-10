@@ -1,7 +1,7 @@
 import random as rd
 
+
 free_fields = []
-free_fields_display = []
 
 board_positions = [[[1], [2], [3]],
                    [[4], [5], [6]],
@@ -51,8 +51,7 @@ def enter_move(board):                              # start
     # The function accepts the board's current status, asks the user about their move,
     # checks the input, and updates the board according to the user's decision.
 
-    make_list_of_free_fields(board)
-    return board   # to stage 2
+    return  # to stage 2
 
 
 def make_list_of_free_fields(board):  # stage 2
@@ -62,15 +61,15 @@ def make_list_of_free_fields(board):  # stage 2
     # board_positions = [[[1], [2], [3]],
     #                    [[4], [5], [6]],
     #                    [[7], [8], [9]]]
+
     for bb in range(0, 3):
         for cc in range(0, 3):
-            if board[bb][cc][0] == '0':
+            if board[bb][cc][0] == '0' or board[bb][cc] == 'X':
                 continue
+            elif board[bb][cc][0] != 'O' or board[bb][cc] == 'X':
+                free_fields.append(tuple((bb, cc)))
 
-            free_fields.append(tuple((bb, cc)))
-            free_fields_display.append(tuple((bb+1, cc+1)))
-
-    return free_fields
+    return
 
 
 def victory_for(board, sign):
@@ -83,46 +82,44 @@ def draw_move(board):  # stage 3
     computer_input = rd.randint(1, 9)
     print(computer_input)
     # The function draws the computer's move and updates the board.
-    for bb in range(0, 3):
-        for cc in range(0, 3):
-            if board[bb][cc] == 'O' or board[bb][cc] == 'X':
-                continue
-            elif computer_input in board[bb][cc]:
-                board[bb][cc] = 'X'
+    loop_on = True
+    while loop_on:
+        for bb in range(0, 3):
+            for cc in range(0, 3):
+                if computer_input == board[bb][cc][00]:
+                    board[bb][cc] = 'X'
+                    loop_on = False
+                    break
+                elif board[bb][cc] == 'O' or board[bb][cc] == 'X':
+                    computer_input = rd.randint(1, 9)
+                    continue
 
+
+
+
+
+                ########## to reenter the loop at the same iteration
 
 
             # if computer_input in board[bb][cc]: # I need to  replace the variable here
 
-
-    make_list_of_free_fields(board)
     return
 
 
 game_on = True
-
+display_board(board_positions)
 while game_on:
-    display_board(board_positions)
     enter_move(board_positions)
     display_board(board_positions)
     draw_move(board_positions)
     display_board(board_positions)
 
 
-## if make list > 0 draw
+print(board_positions)
+print(free_fields)
+
 
 ##################
-
-x = [(1, 1), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)]
-xq = [(0, 0), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
-board_positions = [[[1], [2], [3]],
-                   [[4], [5], [6]],
-                   [[7], [8], [9]]]
-
-to_check = []
-add = 0
-
-
 
 #
 # for out_iter in range(0, 8):
