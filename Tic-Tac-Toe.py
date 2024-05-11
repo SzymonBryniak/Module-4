@@ -86,7 +86,6 @@ def victory_for(board, sign):
     #                    [[4], [5], [6]],
     #                    [[7], [8], [9]]]
 
-
     wins = {
         'win1': [1, 2, 3],
         'win2': [4, 5, 6],
@@ -98,8 +97,8 @@ def victory_for(board, sign):
         'win8': [1, 5, 9]
     }
 
-    user = []
-    computer = []
+    if move['computer'] in wins:
+        print('yes')
 
     return
 
@@ -108,7 +107,7 @@ def draw_move(board):  # stage 3
     computer_input = rd.randrange(9)
     print(computer_input)
     computer_round = 0
-
+    global move
     # The function draws the computer's move and updates the board.
     computer_round += 1
     loop_on = True
