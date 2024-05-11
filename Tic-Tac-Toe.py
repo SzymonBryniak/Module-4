@@ -2,7 +2,10 @@ import random as rd
 
 
 free_fields = []
+move = {'computer': [],
+        'user': []
 
+        }
 board_positions = [[[1], [2], [3]],
                    [[4], [5], [6]],
                    [[7], [8], [9]]]
@@ -42,15 +45,20 @@ def display_board(board):
 
 def enter_move(board):                              # start
     ask_for_input = int(input('enter your move '))
+
     for bb in range(0, 3):
         for cc in range(0, 3):
             if board[bb][cc] == 'O' or board[bb][cc] == 'X':
                 continue
             elif ask_for_input in board[bb][cc]:
                 board[bb][cc] = 'O'
+
+
     # The function accepts the board's current status, asks the user about their move,
     # checks the input, and updates the board according to the user's decision.
 
+    #move[f'user choice {ask_for_input}'] = ['O']
+    move['user'].append(ask_for_input)
     return  # to stage 2
 
 
@@ -61,7 +69,6 @@ def make_list_of_free_fields(board):  # stage 2
     # board_positions = [[[1], [2], [3]],
     #                    [[4], [5], [6]],
     #                    [[7], [8], [9]]]
-
     for bb in range(0, 3):
         for cc in range(0, 3):
             if board[bb][cc][0] == '0' or board[bb][cc] == 'X':
@@ -75,33 +82,54 @@ def make_list_of_free_fields(board):  # stage 2
 def victory_for(board, sign):
     # The function analyzes the board's status in order to check if
     # the player using 'O's or 'X's has won the game
+    # board_positions = [[[1], [2], [3]],
+    #                    [[4], [5], [6]],
+    #                    [[7], [8], [9]]]
+
+
+    wins = {
+        'win1': [1, 2, 3],
+        'win2': [4, 5, 6],
+        'win3': [7, 8, 9],
+        'win4': [1, 4, 7],
+        'win5': [2, 5, 8],
+        'win6': [3, 6, 9],
+        'win7': [3, 5, 7],
+        'win8': [1, 5, 9]
+    }
+
+    user = []
+    computer = []
+
     return
 
 
 def draw_move(board):  # stage 3
-    computer_input = rd.randint(1, 9)
+    computer_input = rd.randrange(9)
     print(computer_input)
+    computer_round = 0
+
     # The function draws the computer's move and updates the board.
+    computer_round += 1
     loop_on = True
+
     while loop_on:
         for bb in range(0, 3):
             for cc in range(0, 3):
-                if computer_input == board[bb][cc][00]:
+                if computer_input == board[bb][cc][0]:
+                    move['computer'].append(board[bb][cc][0])
                     board[bb][cc] = 'X'
                     loop_on = False
                     break
+
                 elif board[bb][cc] == 'O' or board[bb][cc] == 'X':
-                    computer_input = rd.randint(1, 9)
+                    computer_input = rd.randrange(9)
+
                     continue
 
-
-
-
-
                 ########## to reenter the loop at the same iteration
-
-
             # if computer_input in board[bb][cc]: # I need to  replace the variable here
+    #move[f'computer choice {computer_input}'] = ['X']
 
     return
 
@@ -113,10 +141,12 @@ while game_on:
     display_board(board_positions)
     draw_move(board_positions)
     display_board(board_positions)
+    print(move)
+
 
 
 print(board_positions)
-print(free_fields)
+
 
 
 ##################
