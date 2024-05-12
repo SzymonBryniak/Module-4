@@ -117,15 +117,21 @@ def victory_for(board, sign):
 
     win_counter = 0
     for key, value in wins.items():
-        # wins dictionary value iteration
-
-        for ii in range(0, 3):  # wins dictionary list element iteration
-
+        for ii in range(0, 3):
             for i in range(len(status['user'])):
                 if status['user'][i] == value[ii]:
                     win_counter += 1
         if win_counter == 3:
             print('user wins')
+        else:
+            win_counter = 0
+        # computer iterations
+        for ii in range(0, 3):
+            for i in range(len(status['computer'])):
+                if status['computer'][i] == value[ii]:
+                    win_counter += 1
+        if win_counter == 3:
+            print('computer wins')
         else:
             win_counter = 0
 
@@ -177,7 +183,7 @@ while game_on:
 print(board_positions)
 
 
-
+# the game is stuck when there are no fields left to choose
 ##################
 
 #
