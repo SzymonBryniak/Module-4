@@ -96,14 +96,24 @@ def victory_for(board, sign):
         'win7': [3, 5, 7],
         'win8': [1, 5, 9]
     }
-    status = []
+    status = {'user': [],
+              'computer': []}
 
+    counter = 0
     for bb in range(0, 3):
         for cc in range(0, 3):
-            if board[bb][cc][0] == '0':
-                status.append(board[bb][cc][0])
-            elif board[bb][cc] == 'X':
-                status.append(board[bb][cc][0])
+            counter += 1
+            if board[bb][cc][0] == 'O':
+                status['user'].append(counter)
+            elif board[bb][cc][0] == 'X':
+                status['computer'].append(counter)
+
+    for key, value in wins.items():
+        for i in range(0, 3):
+            if value == status['user']:
+                print('user wins')
+            if value == status['computer']:
+                print('computer wins')
 
     return print(status)
 
@@ -141,11 +151,12 @@ def draw_move(board):  # stage 3
 game_on = True
 display_board(board_positions)
 while game_on:
-    victory_for(board_positions, move)
+
     enter_move(board_positions)
     display_board(board_positions)
     draw_move(board_positions)
     display_board(board_positions)
+    victory_for(board_positions, move)
     print(move)
 
 
