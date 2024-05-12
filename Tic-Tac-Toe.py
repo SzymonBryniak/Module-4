@@ -108,12 +108,26 @@ def victory_for(board, sign):
             elif board[bb][cc][0] == 'X':
                 status['computer'].append(counter)
 
+    # for key, value in wins.items():
+    #     for i in range(0, 3):
+    #         if value == status['user']:
+    #             print('user wins')
+    #         if value == status['computer']:
+    #             print('computer wins')
+
+    win_counter = 0
     for key, value in wins.items():
-        for i in range(0, 3):
-            if value == status['user']:
-                print('user wins')
-            if value == status['computer']:
-                print('computer wins')
+        # wins dictionary value iteration
+
+        for ii in range(0, 3):  # wins dictionary list element iteration
+
+            for i in range(len(status['user'])):
+                if status['user'][i] == value[ii]:
+                    win_counter += 1
+        if win_counter == 3:
+            print('user wins')
+        else:
+            win_counter = 0
 
     return print(status)
 
@@ -158,7 +172,6 @@ while game_on:
     display_board(board_positions)
     victory_for(board_positions, move)
     print(move)
-
 
 
 print(board_positions)
