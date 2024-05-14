@@ -1,5 +1,5 @@
 import random as rd
-
+game_on = True
 
 free_fields = []
 move = {'computer': [],
@@ -124,7 +124,8 @@ def victory_for(board, sign):
                     user_win_counter += 1
         if user_win_counter == 3:
             print('user wins')
-            return
+            sign += 1
+            return 1
         else:
             user_win_counter = 0
         # computer iterations
@@ -134,7 +135,7 @@ def victory_for(board, sign):
                     computer_win_counter += 1
         if computer_win_counter == 3:
             print('computer wins')
-            return
+            return 2
         else:
             computer_win_counter = 0
 
@@ -147,7 +148,7 @@ def victory_for(board, sign):
     # if draw_counter == 9 and win_counter == 0:
     #     print('draw')
 
-    return #print(status)
+    return 0 #print(status)
 
 
 def draw_move(board):  # stage 3
@@ -180,7 +181,7 @@ def draw_move(board):  # stage 3
     return
 
 
-game_on = True
+
 display_board(board_positions)
 round_counter = 0
 
@@ -191,18 +192,21 @@ while game_on:
     enter_move(board_positions)
     display_board(board_positions)
     if round_counter == 5:
-        victory_for(board_positions, move)
+        victory_for(board_positions, game_on)
         print('draw')
         game_on = False
+
     draw_move(board_positions)
     display_board(board_positions)
-    victory_for(board_positions, move)
-
+    if victory_for(board_positions, round_counter) > 0:
+        game_on = False
+    else:
+        continue
 
     #print(move, round_counter)
 
 
-print(board_positions)
+
 
 
 # the game is stuck when there are no fields left to choose
