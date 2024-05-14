@@ -115,32 +115,44 @@ def victory_for(board, sign):
     #         if value == status['computer']:
     #             print('computer wins')
 
-    win_counter = 0
+    user_win_counter = 0
+    computer_win_counter = 0
     for key, value in wins.items():
         for ii in range(0, 3):
             for i in range(len(status['user'])):
                 if status['user'][i] == value[ii]:
-                    win_counter += 1
-        if win_counter == 3:
+                    user_win_counter += 1
+        if user_win_counter == 3:
             print('user wins')
+            return
         else:
-            win_counter = 0
+            user_win_counter = 0
         # computer iterations
-        for ii in range(0, 3):
-            for i in range(len(status['computer'])):
-                if status['computer'][i] == value[ii]:
-                    win_counter += 1
-        if win_counter == 3:
+        for bb in range(0, 3):
+            for b in range(len(status['computer'])):
+                if status['computer'][b] == value[bb]:
+                    computer_win_counter += 1
+        if computer_win_counter == 3:
             print('computer wins')
+            return
         else:
-            win_counter = 0
+            computer_win_counter = 0
 
-    return print(status)
+    # draw_counter = 0
+    # for bb in range(0, 3):
+    #     for cc in range(0, 3):
+    #         if board[bb][cc] == 'O' or board[bb][cc] == 'X':
+    #             draw_counter += 1
+    #
+    # if draw_counter == 9 and win_counter == 0:
+    #     print('draw')
+
+    return #print(status)
 
 
 def draw_move(board):  # stage 3
     computer_input = rd.randrange(9)
-    print(computer_input)
+    #print(computer_input)
     computer_round = 0
     global move
     # The function draws the computer's move and updates the board.
@@ -157,7 +169,7 @@ def draw_move(board):  # stage 3
                     break
 
                 elif board[bb][cc] == 'O' or board[bb][cc] == 'X':
-                    computer_input = rd.randrange(9)
+                    computer_input = rd.randrange(10)
 
                     continue
 
@@ -170,14 +182,24 @@ def draw_move(board):  # stage 3
 
 game_on = True
 display_board(board_positions)
+round_counter = 0
+
 while game_on:
 
+    round_counter += 1
+    print(f'Round {round_counter}')
     enter_move(board_positions)
     display_board(board_positions)
+    if round_counter == 5:
+        victory_for(board_positions, move)
+        print('draw')
+        game_on = False
     draw_move(board_positions)
     display_board(board_positions)
     victory_for(board_positions, move)
-    print(move)
+
+
+    #print(move, round_counter)
 
 
 print(board_positions)
