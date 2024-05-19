@@ -207,8 +207,6 @@ while game_on:
 
 
 
-
-
 # the game is stuck when there are no fields left to choose
 ##################
 
